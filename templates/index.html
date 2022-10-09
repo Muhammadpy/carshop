@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Shop</title>
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <header>
+    <h1><a href="{% url 'main:index' %}">Bosh sahifa</a></h1>
+  </header>
+  {% if user.is_authenticated %}
+  <p> Xush kwlinsiz, {{user.username }}!</p>
+  <p><a href="{% url 'log out' %}"> chiqib ketish</a></p>
+  {% else %}
+  <p>
+    <a href="{% url 'login' %}">Saytga kirish </a>
+   
+  </p>
+  {% endif %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+      <div class="container mt-5">
+          <div class="row">
+
+              <div class="col-md-9">
+                  <img src="/static/images/31.jpg" width="100%" alt="">
+              </div>
+              <div class="col-md-3">
+                <ul class="list-group">
+                  <li class="list-group-item"> 
+                    <a href="/"> Hamma kategoriyalar  </a>
+                 </li>
+                    {% for c in categories %}
+                    <li class="list-group-item"> 
+                       <a href="/category/{{ c.id }}">  {{ c.name }} </a>
+                    </li>
+                   {% endfor %}
+                  </ul>
+                  
+              </div>
+          </div>
+      </div>
+
+
+    <div class="container mt-5">
+        <div class="row">
+
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="card">
+                <h1> {{ product.name }}  </h1>
+                <img src="{{ product.image.url }}" style="width: 300px; height: 250px;" alt="Article image">
+                <p> {{ product.text }} </p>
+                
+                <h2>Qo'shigan sanasi : {{ product.reg_date }} </h2>
+                <a href="/product/{{ product.id }}" class="btn btn-success">Batafsil o'qish</a>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        </div>
+    </div>
+    <footer>
+      <h2><a href="{% url 'main:post_new' %}">+Yangi qo`shish</a></h2>
+    </footer>
+
+
+
+      
+    
+</body>
+</html>

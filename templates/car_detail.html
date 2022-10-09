@@ -1,0 +1,8 @@
+<div class="post-entry">
+    <h2>{{ Product.name }}</h2>
+    <h3>{{ Product.reg_date }}</h3>
+    <P>{{ Product.text }}</P>
+
+</div>
+<a href="{% url 'main:post_edit' Product.id %}">post tahrirlash</a> <br>
+<a href="{% url 'main:post_delete' Product.id %}">postni o`chirish</a>

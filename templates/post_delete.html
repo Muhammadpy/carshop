@@ -1,0 +1,9 @@
+
+
+{% block content %}
+    <h1>postni o`chirish</h1>
+    <form action="" method="post">{% csrf_token %}
+        <p>"{{ Product.name }}" postni o`chiraymi </p>
+    <input type="submit" value="o`chirish">
+    </form>
+{% endblock content %}
